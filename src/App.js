@@ -16,6 +16,10 @@ function App() {
 				}}
 			/>
 			{state && <Map data={require(`./data/final/${state.value}.json`)} />}
+			<p>
+				초록색 점: 구급 / 빨간색 점: 화재 / 파란색 점: 구조 / 검은색 점:
+				기타활동
+			</p>
 		</div>
 	);
 }

@@ -13,7 +13,7 @@ function Map({ data }) {
 	return (
 		<div>
 			<NaverMap
-				style={{ width: '100%', height: '80vh' }}
+				style={{ width: '100%', height: '82vh' }}
 				defaultZoom={13}
 				center={{
 					x: Number(data.centerPoint.x),
