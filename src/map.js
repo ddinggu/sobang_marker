@@ -9,7 +9,7 @@ const color = {
 	etc: 'black',
 };
 
-function Map({ data }) {
+function Map({ data, radius }) {
 	return (
 		<div>
 			<NaverMap
@@ -21,27 +21,13 @@ function Map({ data }) {
 				}}
 			>
 				{!data ? <></> : <Marking data={data} />}
-				{!data ? <></> : <Circling data={data} />}
+				{!data ? <></> : <Circling data={data} radius={radius} />}
 			</NaverMap>
 		</div>
 	);
 }
 
 function Marking({ data }) {
-	return data.out.map(({ x, y, type }) => {
-		return (
-			<Circle
-				center={{ x: Number(x), y: Number(y) }}
-				radius={7}
-				fillOpacity={0.85}
-				fillColor={color[type]}
-				strokeColor={color[type]}
-			/>
-		);
-	});
-}
-
-function Circling({ data }) {
 	return data.center.map(({ x, y, name }) => (
 		<Marker
 			position={{ x: Number(x), y: Number(y) }}
@@ -50,6 +36,20 @@ function Circling({ data }) {
 			onClick={() => alert(`여기는 ${name} 입니다.`)}
 		/>
 	));
+}
+
+function Circling({ data, radius }) {
+	return data.out.map(({ x, y, type }) => {
+		return (
+			<Circle
+				center={{ x: Number(x), y: Number(y) }}
+				radius={Number(radius)}
+				fillOpacity={0.85}
+				fillColor={color[type]}
+				strokeColor={color[type]}
+			/>
+		);
+	});
 }
 
 export default Map;
